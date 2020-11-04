@@ -20,6 +20,14 @@ const stage = {
   SOLVED: "solved",
 };
 
+const prefixes = [
+  "Have you tried",
+  "What about",
+  "You should consider",
+  "How about",
+  "I recommend",
+];
+
 const advices = [
   "putting parentheses around everything",
   "tracing through a test case",
@@ -35,16 +43,18 @@ const advices = [
 ];
 
 function QueuePage() {
-  const randomIndex = () => {
-    return Math.floor(Math.random() * advices.length);
+  const randomIndex = (length) => {
+    return Math.floor(Math.random() * length);
   };
 
   const [currStage, setCurrStage] = React.useState(stage.WAITING);
 
-  //   const [summoned, setSummoned] = React.useState(false);
-  //   const [trying, setTrying] = React.useState(false);
-  const [adviceIndex, setAdviceIndex] = React.useState(randomIndex());
-  //   const [solved, setSolved] = React.useState();
+  const [adviceIndex, setAdviceIndex] = React.useState(
+    randomIndex(advices.length)
+  );
+  const [prefixIndex, setPrefixIndex] = React.useState(
+    randomIndex(prefixes.length)
+  );
 
   const pollyImage = (
     <Image
@@ -55,12 +65,20 @@ function QueuePage() {
     />
   );
 
+  const currAdvice = (
+    <span>
+      <Header as="h2">{prefixes[prefixIndex]}...</Header>
+      <p>...{advices[adviceIndex]}?</p>
+    </span>
+  );
+
   const newAdvice = () => {
-    let newIndex = randomIndex();
+    let newIndex = randomIndex(advices.length);
     while (newIndex === adviceIndex) {
-      newIndex = randomIndex();
+      newIndex = randomIndex(advices.length);
     }
     setAdviceIndex(newIndex);
+    setPrefixIndex(randomIndex(prefixes.length));
   };
 
   const renderComponent = () => {
@@ -68,8 +86,7 @@ function QueuePage() {
       case stage.SUMMONED:
         return (
           <Segment textAlign="center" padded>
-            <Header as="h2">Have you tried...</Header>
-            <p>...{advices[adviceIndex]}?</p>
+            {currAdvice}
             {pollyImage}
 
             <span>
@@ -77,11 +94,12 @@ function QueuePage() {
                 color="green"
                 size="small"
                 onClick={() => setCurrStage(stage.THINKING)}
+                style={{ marginBottom: "5px" }}
               >
-                NOPE, LEMME TRY!
+                LEMME TRY!
               </Button>
               <Button color="red" size="small" onClick={newAdvice}>
-                TRIED ALREADY...
+                ALREADY TRIED...
               </Button>
             </span>
           </Segment>
@@ -89,18 +107,18 @@ function QueuePage() {
       case stage.THINKING:
         return (
           <Segment textAlign="center" padded>
-            <Header as="h3">What's up, 150er!</Header>
+            {currAdvice}
             {pollyImage}
-            <Header as="h2">Have you tried...</Header>
-            <p>...{advices[adviceIndex]}?</p>
 
             <span>
               <Button
                 color="green"
                 size="small"
+                className="margin-button"
                 onClick={() => {
                   setCurrStage(stage.SOLVED);
                 }}
+                style={{ marginBottom: "5px" }}
               >
                 I GOT IT!
               </Button>
@@ -135,7 +153,9 @@ function QueuePage() {
       default:
         return (
           <Segment textAlign="left" padded>
-            <Header as="h2">Happening always</Header>
+            <Header as="h2" style={{ fontWeight: "lighter" }}>
+              Happening always
+            </Header>
             <Divider />
             <p>
               The queue is <span className="green">open</span>.
@@ -167,7 +187,7 @@ function QueuePage() {
   return (
     <div>
       <Segment basic color="red" inverted vertical>
-        <Header as="h1" inverted className="queue-header">
+        <Header as="h1" inverted>
           <Link to="/" className="link">
             15150: Polly's Office Hours
           </Link>
