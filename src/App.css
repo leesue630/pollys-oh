@@ -2,37 +2,72 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .Polly {
+    animation: Polly-wobble infinite 1s alternate ease-in-out;
   }
 }
 
-.App-header {
-  background-color: #282c34;
+.link {
+  color: #fff;
+}
+.link:hover {
+  color: rgb(203, 255, 194);
+}
+
+#polly-text {
+  font-family: "Comic Sans MS", "Comic Sans", sans-serif;
+  margin: 0;
+  color: red;
+  font-style: italic;
+  transform: rotate(-5deg);
+  font-size: xxx-large;
+}
+
+#office-hours-text {
+  margin-top: 0;
+  font-family: sans-serif;
+  font-weight: lighter;
+  font-size: calc(50px + 2vmin);
+}
+
+.green {
+  color: green;
+}
+
+.queue-header {
+  font-weight: lighter;
+  /* font-size: 30; */
+}
+
+.Landing-header {
+  background-color: #84af60;
+  padding-top: 15%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: top;
   font-size: calc(10px + 2vmin);
-  color: white;
+  background-image: url("assets/background.png");
+  background-size: 100vw;
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
 
-.App-link {
-  color: #61dafb;
+.queue-segment {
+  margin-top: 30px;
 }
 
-@keyframes App-logo-spin {
+.margin-button {
+  margin: 20px;
+}
+
+@keyframes Polly-wobble {
   from {
-    transform: rotate(0deg);
+    transform: rotate(-3deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(3deg);
   }
 }
