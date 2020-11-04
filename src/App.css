@@ -27,14 +27,12 @@
   color: red;
   font-style: italic;
   transform: rotate(-5deg);
-  font-size: xxx-large;
 }
 
 #office-hours-text {
   margin-top: 0;
   font-family: sans-serif;
   font-weight: lighter;
-  font-size: xxx-large;
 }
 
 .green {
