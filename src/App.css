@@ -22,17 +22,19 @@
 }
 
 #polly-text {
-  font-family: "Comic Sans MS", "Comic Sans", "Noteworthy", sans-serif;
   margin: 0;
   color: red;
   font-style: italic;
   transform: rotate(-5deg);
+  font-family: "Comic Sans MS", "Comic Sans", Noteworthy, sans-serif;
+  font-size: calc(35px + 3vw);
 }
 
 #office-hours-text {
   margin-top: 0;
   font-family: sans-serif;
   font-weight: lighter;
+  font-size: calc(35px + 3vw);
 }
 
 .green {
@@ -41,7 +43,7 @@
 
 .Landing-header {
   background-color: #84af60;
-  padding-top: 15%;
+  padding-top: 10vh;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

@@ -5,16 +5,8 @@ import { Link } from "react-router-dom";
 function LandingPage() {
   return (
     <header className="Landing-header">
-      <Header
-        id="polly-text"
-        size="huge"
-        style={{
-          fontFamily: "Comic Sans MS, Comic Sans, Noteworthy, sans-serif",
-        }}
-      >
-        Polly's
-      </Header>
-      <Header inverted id="office-hours-text" size="huge">
+      <Header id="polly-text">Polly's</Header>
+      <Header inverted id="office-hours-text">
         Office Hours
       </Header>
       <Link to="/queue">
