@@ -22,20 +22,19 @@
 }
 
 #polly-text {
-  font-family: "Comic Sans MS", "Comic Sans", sans-serif;
+  font-family: "Comic Sans MS", "Comic Sans", "Noteworthy", sans-serif;
   margin: 0;
   color: red;
   font-style: italic;
   transform: rotate(-5deg);
-  font-size: xx-large;
+  font-size: xxx-large;
 }
 
 #office-hours-text {
   margin-top: 0;
   font-family: sans-serif;
   font-weight: lighter;
-  font-size: xx-large;
-  /* font-size: calc(50px + 2vmin); */
+  font-size: xxx-large;
 }
 
 .green {
