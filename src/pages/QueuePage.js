@@ -47,17 +47,11 @@ function QueuePage() {
   //   const [solved, setSolved] = React.useState();
 
   const pollyImage = (
-    <Popup
-      content="Polly (Morphism)"
-      position="right center"
-      trigger={
-        <Image
-          src={currStage === stage.SOLVED ? pollyStar : polly}
-          centered
-          size="small"
-          className="Polly"
-        />
-      }
+    <Image
+      src={currStage === stage.SOLVED ? pollyStar : polly}
+      centered
+      size="small"
+      className="Polly"
     />
   );
 
