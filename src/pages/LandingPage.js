@@ -6,7 +6,7 @@ function LandingPage() {
   return (
     <header className="Landing-header">
       <h1 id="polly-text">Polly's</h1>
-      <Header size="huge" color="white" inverted id="office-hours-text">
+      <Header size="huge" inverted id="office-hours-text">
         Office Hours
       </Header>
       <Link to="/queue">
