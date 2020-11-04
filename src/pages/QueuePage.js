@@ -68,10 +68,9 @@ function QueuePage() {
       case stage.SUMMONED:
         return (
           <Segment textAlign="center" padded>
-            <Header as="h3">What's up, 150er!</Header>
-            {pollyImage}
             <Header as="h2">Have you tried...</Header>
             <p>...{advices[adviceIndex]}?</p>
+            {pollyImage}
 
             <span>
               <Button
