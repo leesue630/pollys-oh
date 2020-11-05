@@ -6,7 +6,7 @@ import LandingPage from "./pages/LandingPage.js";
 import axios from "axios";
 
 const googleSheetsApiUrl =
-  "https://sheet2api.com/v1/LrEyZUo0SMGg/pollys-office-hours-data";
+  "https://sheet.best/api/sheets/d2df11db-8916-4609-9bfe-0ffcf79681c3";
 
 function App() {
   const [advices, setAdvices] = React.useState();
