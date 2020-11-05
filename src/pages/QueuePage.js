@@ -8,6 +8,7 @@ import {
   Divider,
   Icon,
   Grid,
+  Placeholder,
 } from "semantic-ui-react";
 import polly from "../assets/polly.png";
 import pollyStar from "../assets/polly_star.png";
@@ -28,21 +29,7 @@ const prefixes = [
   "I recommend",
 ];
 
-const advices = [
-  "putting parentheses around everything",
-  "tracing through a test case",
-  "re-reading the writeup with extra care",
-  "reviewing lecture/lab notes",
-  "taking a break? No, seriously",
-  "restarting your computer",
-  "joining the human oh queue",
-  "coding in Python instead",
-  "following the types? Unfollowing the types",
-  "becoming a tree",
-  "taking a deeeeeeeep breath",
-];
-
-function QueuePage() {
+function QueuePage(props) {
   const randomIndex = (length) => {
     return Math.floor(Math.random() * length);
   };
@@ -50,7 +37,7 @@ function QueuePage() {
   const [currStage, setCurrStage] = React.useState(stage.WAITING);
 
   const [adviceIndex, setAdviceIndex] = React.useState(
-    randomIndex(advices.length)
+    props.advices ? randomIndex(props.advices.length) : 0
   );
   const [prefixIndex, setPrefixIndex] = React.useState(
     randomIndex(prefixes.length)
@@ -65,20 +52,38 @@ function QueuePage() {
     />
   );
 
-  const currAdvice = (
+  const currAdvice = props.advices ? (
     <span>
       <Header as="h2">{prefixes[prefixIndex]}...</Header>
-      <p>...{advices[adviceIndex]}?</p>
+      <p>...{props.advices[adviceIndex].advice}?</p>
     </span>
+  ) : (
+    <Placeholder>
+      <Placeholder.Header>
+        <Placeholder.Line length="medium" />
+        <Placeholder.Line length="full" />
+      </Placeholder.Header>
+    </Placeholder>
   );
 
   const newAdvice = () => {
-    let newIndex = randomIndex(advices.length);
+    if (!props.advices) {
+      return;
+    }
+    let newIndex = randomIndex(props.advices.length);
     while (newIndex === adviceIndex) {
-      newIndex = randomIndex(advices.length);
+      newIndex = randomIndex(props.advices.length);
     }
     setAdviceIndex(newIndex);
     setPrefixIndex(randomIndex(prefixes.length));
+  };
+
+  const tryAdvice = () => {
+    if (!props.advices) {
+      return;
+    }
+    setCurrStage(stage.THINKING);
+    window.open(props.advices[adviceIndex].url);
   };
 
   const renderComponent = () => {
@@ -88,12 +93,11 @@ function QueuePage() {
           <Segment textAlign="center" padded>
             {currAdvice}
             {pollyImage}
-
             <span>
               <Button
                 color="green"
                 size="small"
-                onClick={() => setCurrStage(stage.THINKING)}
+                onClick={tryAdvice}
                 style={{ marginBottom: "5px" }}
               >
                 LEMME TRY!
@@ -173,7 +177,10 @@ function QueuePage() {
             <Button
               color="yellow"
               size="large"
-              onClick={() => setCurrStage(stage.SUMMONED)}
+              onClick={() => {
+                newAdvice();
+                setCurrStage(stage.SUMMONED);
+              }}
             >
               SUMMON POLLY
             </Button>
