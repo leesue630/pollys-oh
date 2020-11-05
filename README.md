@@ -2,12 +2,14 @@
 
 A parody of cmu.ohqueue.com inspired by the method of [rubber duck debugging](https://en.wikipedia.org/wiki/Rubber_duck_debugging).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="pollys-oh.png" width="400">
 
 ## Tools used
 [SheetBest](https://sheet.best) to use a Google Sheets as a backend.<br />
 [howler.js](https://howlerjs.com) to play audio.<br />
 [Semantic UI React](https://react.semantic-ui.com) for styling.
+
+Built with ReactJs.
 
 ## Available Scripts
 
