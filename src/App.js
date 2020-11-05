@@ -15,7 +15,7 @@ function App() {
     axios
       .get(googleSheetsApiUrl)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setAdvices(res.data);
       })
       .catch((err) => {

@@ -86,6 +86,8 @@ function QueuePage(props) {
     window.open(props.advices[adviceIndex].url);
   };
 
+  const helpCount = "15,150";
+
   const renderComponent = () => {
     switch (currStage) {
       case stage.SUMMONED:
@@ -164,7 +166,7 @@ function QueuePage(props) {
             <p>
               The queue is <span className="green">open</span>.
               <br />
-              <b>15,150 students</b> are being helped.
+              Students have been helped <b>{helpCount} times</b>.
               <br />
               <b>1 TA</b> is active.{" "}
               <Popup
