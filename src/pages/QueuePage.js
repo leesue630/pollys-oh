@@ -1,18 +1,24 @@
+// modules
 import React from "react";
-import {
-  Button,
-  Header,
-  Segment,
-  Image,
-  Popup,
-  Divider,
-  Icon,
-  Grid,
-  Placeholder,
-} from "semantic-ui-react";
-import polly from "../assets/polly.png";
-import pollyStar from "../assets/polly_star.png";
-import { Link } from "react-router-dom";
+import { Howl } from "howler";
+import { Button, Header, Segment, Grid, Placeholder } from "semantic-ui-react";
+
+// components
+import QueueHeader from "../components/QueueHeader.js";
+import WaitingSegment from "../components/WaitingSegment.js";
+import PollyImage from "../components/PollyImage.js";
+
+// assets
+import parrot_hello from "../assets/parrot_hello.mp3";
+import parrot_goodJob from "../assets/parrot_goodJob.mp3";
+
+const hello_sound = new Howl({
+  src: [parrot_hello],
+});
+
+const goodJob_sound = new Howl({
+  src: [parrot_goodJob],
+});
 
 const stage = {
   WAITING: "waiting",
@@ -41,15 +47,6 @@ function QueuePage(props) {
   );
   const [prefixIndex, setPrefixIndex] = React.useState(
     randomIndex(prefixes.length)
-  );
-
-  const pollyImage = (
-    <Image
-      src={currStage === stage.SOLVED ? pollyStar : polly}
-      centered
-      size="small"
-      className="Polly"
-    />
   );
 
   const currAdvice = props.advices ? (
@@ -86,7 +83,16 @@ function QueuePage(props) {
     window.open(props.advices[adviceIndex].url);
   };
 
-  const helpCount = "15,150";
+  const enterQueue = () => {
+    // hello_sound.play();
+    newAdvice();
+    setCurrStage(stage.SUMMONED);
+  };
+
+  const handleSolved = () => {
+    goodJob_sound.play();
+    setCurrStage(stage.SOLVED);
+  };
 
   const renderComponent = () => {
     switch (currStage) {
@@ -94,7 +100,7 @@ function QueuePage(props) {
         return (
           <Segment textAlign="center" padded>
             {currAdvice}
-            {pollyImage}
+            <PollyImage />
             <span>
               <Button
                 color="green"
@@ -114,16 +120,14 @@ function QueuePage(props) {
         return (
           <Segment textAlign="center" padded>
             {currAdvice}
-            {pollyImage}
+            <PollyImage />
 
             <span>
               <Button
                 color="green"
                 size="small"
                 className="margin-button"
-                onClick={() => {
-                  setCurrStage(stage.SOLVED);
-                }}
+                onClick={handleSolved}
                 style={{ marginBottom: "5px" }}
               >
                 I GOT IT!
@@ -145,7 +149,7 @@ function QueuePage(props) {
         return (
           <Segment textAlign="center">
             <Header as="h3">You're a superstar!</Header>
-            {pollyImage}
+            <PollyImage solved />
             <Header as="h2">I knew you could do it!</Header>
             <Button
               color="green"
@@ -157,37 +161,7 @@ function QueuePage(props) {
           </Segment>
         );
       default:
-        return (
-          <Segment textAlign="left" padded>
-            <Header as="h2" style={{ fontWeight: "lighter" }}>
-              Happening always
-            </Header>
-            <Divider />
-            <p>
-              The queue is <span className="green">open</span>.
-              <br />
-              <b>{helpCount} students</b> have been helped.
-              <br />
-              <b>1 TA</b> is active.{" "}
-              <Popup
-                content="Polly (Morphism)"
-                trigger={<Icon name="group" color="grey" size="small" />}
-              />
-              <br />
-              Waiting time of <b>0 mins</b>.
-            </p>
-            <Button
-              color="yellow"
-              size="large"
-              onClick={() => {
-                newAdvice();
-                setCurrStage(stage.SUMMONED);
-              }}
-            >
-              SUMMON POLLY
-            </Button>
-          </Segment>
-        );
+        return <WaitingSegment enterQueue={enterQueue} />;
     }
   };
 
@@ -195,13 +169,7 @@ function QueuePage(props) {
 
   return (
     <div>
-      <Segment basic color="red" inverted vertical>
-        <Header as="h1" inverted>
-          <Link to="/" className="link">
-            15150: Polly's Office Hours
-          </Link>
-        </Header>
-      </Segment>
+      <QueueHeader />
       <Grid columns="equal">
         <Grid.Row centered className="queue-segment">
           <Grid.Column mobile={12} computer={8}>
