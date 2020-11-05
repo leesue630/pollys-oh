@@ -166,7 +166,7 @@ function QueuePage(props) {
             <p>
               The queue is <span className="green">open</span>.
               <br />
-              Students have been helped <b>{helpCount} times</b>.
+              <b>{helpCount} students</b> have been helped.
               <br />
               <b>1 TA</b> is active.{" "}
               <Popup
