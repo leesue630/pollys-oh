@@ -1,6 +1,6 @@
 # Polly's Office Hours
 
-A parody of cmu.ohqueue.com inspired by the method of rubber duck debugging.
+A parody of cmu.ohqueue.com inspired by the method of [rubber duck debugging](https://en.wikipedia.org/wiki/Rubber_duck_debugging).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
