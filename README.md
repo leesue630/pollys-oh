@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Tools used
 [SheetBest](https://sheet.best) to use a Google Sheets as a backend.<br />
-[Howler](https://howlerjs.com) to play audio.<br />
+[howler.js](https://howlerjs.com) to play audio.<br />
 [Semantic UI React](https://react.semantic-ui.com) for styling.
 
 ## Available Scripts
